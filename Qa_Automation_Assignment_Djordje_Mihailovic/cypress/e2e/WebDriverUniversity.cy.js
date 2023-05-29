@@ -1,4 +1,4 @@
-describe('Home Page', () => {
+describe('Page Assignment Test Cases', () => {
   
   beforeEach(() => {
       cy.visit('http://www.webdriveruniversity.com/')
@@ -26,13 +26,13 @@ describe('Home Page', () => {
       cy.get('#myModal').should('be.visible')
 
       const modalTitleText = 'It’s that Easy!!  Well I think it is.....'
-      const expectedText = 'We can inject and use JavaScript code if all else fails! Remember always try to use WebDriver Library method(s) first such as WebElement.click(). (The Selenium development team have spent allot of time developing WebDriver functions etc).'
+      const modalBodyText = 'We can inject and use JavaScript code if all else fails! Remember always try to use WebDriver Library method(s) first such as WebElement.click(). (The Selenium development team have spent allot of time developing WebDriver functions etc).'
 
       cy.get('.modal-title').should('have.text', modalTitleText)
       cy.get('.modal-body')
           .then(($modalBody) => {
               const actualText = Cypress.$.map($modalBody, (element) => element.innerText).join(" ").trim()
-              expect(actualText).to.equal(expectedText)
+              expect(actualText).to.equal(modalBodyText)
           })
 
       cy.get('.modal-footer > .btn').click()
@@ -82,7 +82,7 @@ describe('Home Page', () => {
       cy.get('#button4').click()
 
       cy.on('window:confirm', (message) => {
-          expect(message).to.equal('Press a button!')                       // Simulate clicking the Cancel button
+          expect(message).to.equal('Press a button!')                        // Simulate clicking the Cancel button
           return false
       })
 
